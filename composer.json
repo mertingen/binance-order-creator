@@ -1,0 +1,9 @@
+{
+    "require": {
+        "jaggedsoft/php-binance-api": "@dev",
+        "symfony/dotenv": "^5.0"
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^5.0"
+    }
+}

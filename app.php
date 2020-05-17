@@ -53,7 +53,14 @@ try {
 				$quantity = intval($scopeVariables['btcBalance'] / $trades['price']);
 				#$price = floatval($trades['price']) - 0.00000010;
 				#$price = number_format($price, 8);
+				$data = array(
+					'quantity' => $quantity,
+					'symbol' => $symbol
+				);
+
 				$order = $scopeVariables['api']->buy($symbol, $quantity, $scopeVariables['orders'][$symbol]);
+				$isSentMessage = sendMessage($data);
+				print($isSentMessage);
 				print_r($order);
 				die;
 			}
@@ -61,4 +68,34 @@ try {
 	});
 } catch(\Exception $e){
 	print_r($e->getMessage()); die;
+}
+
+
+
+function sendMessage($data){
+	try{
+	
+    $message = "[BUY] [SYMBOL:" . $data['symbol'] . "] - [QUANTITY:" . $data['quantity'] . "]";
+
+	$connection = new TwitterOAuth($_ENV['TWITTER_API_KEY'], $_ENV['TWITTER_SECRET_KEY'], $_ENV['TWITTER_ACCESS_TOKEN'], $_ENV['TWITTER_ACCESS_SECRET_TOKEN']);
+	$data = [
+	    'event' => [
+	        'type' => 'message_create',
+	        'message_create' => [
+	            'target' => [
+	                'recipient_id' => '1411052496'
+	            ],
+	            'message_data' => [
+	                'text' => $message
+	            ]
+	        ]
+	    ]
+	];
+	$result = $connection->post('direct_messages/events/new', $data, true);
+	return true;
+
+	}catch(\Exception $e){
+		dd($e->getMessage());
+	}
+
 }

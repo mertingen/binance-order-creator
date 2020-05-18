@@ -58,7 +58,9 @@ try {
 					'symbol' => $symbol
 				);
 
-				$order = $scopeVariables['api']->buy($symbol, $quantity, $scopeVariables['orders'][$symbol]);
+				$orderPrice = $scopeVariables['orders'][$symbol] + 0.00000004;
+				$orderPrice = number_format($orderPrice, 8);
+				$order = $scopeVariables['api']->buy($symbol, $quantity, $orderPrice);
 				$isSentMessage = sendMessage($data);
 				print($isSentMessage);
 				print_r($order);

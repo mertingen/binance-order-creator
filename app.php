@@ -92,6 +92,7 @@ function sendMessage($data){
 	    ]
 	];
 	$result = $connection->post('direct_messages/events/new', $data, true);
+	echo "### Message is sent! ###" . PHP_EOL;
 	return true;
 
 	}catch(\Exception $e){

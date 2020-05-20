@@ -35,10 +35,11 @@ try {
 		}
 	}
 
-	asort($orders);
-	#$symbols = array_keys($orders);
-	shuffle($orders);
+	#asort($orders);
+	$symbols = array_keys($orders);
 	echo "Total orders: " . count($orders) . PHP_EOL;
+
+	shuffle($orders);
 
 
 	$scopeVariables = array(

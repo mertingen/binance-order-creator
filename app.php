@@ -36,7 +36,8 @@ try {
 	}
 
 	asort($orders);
-	$symbols = array_keys($orders);
+	#$symbols = array_keys($orders);
+	shuffle($orders);
 	echo "Total orders: " . count($orders) . PHP_EOL;
 
 

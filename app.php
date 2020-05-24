@@ -39,9 +39,9 @@ try {
 
 	#asort($orders);
 	$symbols = array_keys($orders);
-
 	echo "Total orders: " . count($orders) . PHP_EOL;
 
+	shuffle($symbols);
 
 	$scopeVariables = array(
 		'api' => $api,

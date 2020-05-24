@@ -21,6 +21,7 @@ try {
 	$btcBalance = $balances['BTC']['btcTotal'];
 
 	$orders = [];
+	$symbols = [];
 	$counter = 0;
 	foreach ($ticker as $key => $value) {
 		if ((strpos($key, 'BTC') > -1) && $value >= 0.00000700 && $value <= 0.00001740) {
@@ -31,15 +32,15 @@ try {
 			if ($priceChangePercent < 10){
 				//getting %10 of the float number
 				$orders[$key] =  number_format($value - (($percentage / 100) * $value), 8);
+				$symbols[] = $key;
 			}
 		}
 	}
 
 	#asort($orders);
 	$symbols = array_keys($orders);
-	echo "Total orders: " . count($orders) . PHP_EOL;
 
-	shuffle($orders);
+	echo "Total orders: " . count($orders) . PHP_EOL;
 
 
 	$scopeVariables = array(

@@ -24,7 +24,7 @@ try {
 	$symbols = [];
 	$counter = 0;
 	foreach ($ticker as $key => $value) {
-		if ((strpos($key, 'BTC') > -1) && $value >= 0.00000700 && $value <= 0.00001740) {
+		if ((strpos($key, 'BTC') > -1) && $value >= 0.00000450 && $value <= 0.00002700) {
 			$changeStatus = $api->prevDay($key);
 			$priceChangePercent = intval($changeStatus['priceChangePercent']);
 			$counter++;

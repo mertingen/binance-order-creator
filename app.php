@@ -14,7 +14,7 @@ try {
 
 	$api->useServerTime();
 
-	$percentage = 10;
+	$percentage = 8;
 
 	$ticker = $api->prices();
 	$balances = $api->balances($ticker);
